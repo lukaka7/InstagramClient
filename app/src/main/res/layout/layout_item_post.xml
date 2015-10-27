@@ -43,8 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rlProfile"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="24dp" >
+        android:layout_alignParentStart="true" >
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/dvImage"
             android:layout_width="370dp"

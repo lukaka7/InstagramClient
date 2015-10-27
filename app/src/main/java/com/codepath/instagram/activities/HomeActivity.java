@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.adapters.InstagramPostsAdapter;
+import com.codepath.instagram.helpers.SimpleVerticalSpacerItemDecoration;
 import com.codepath.instagram.helpers.Utils;
 import com.codepath.instagram.models.InstagramPost;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    private static final Integer VERTICAL_ITEM_SPACE = 24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set Layout
         rvPosts.setLayoutManager(new LinearLayoutManager(this));
+        rvPosts.addItemDecoration(new SimpleVerticalSpacerItemDecoration(VERTICAL_ITEM_SPACE));
     }
 
     @Override
