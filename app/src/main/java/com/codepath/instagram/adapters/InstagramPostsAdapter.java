@@ -79,7 +79,10 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
 
         holder.dvAvatar.setImageURI(avatarUri);
         holder.tvUserName.setText(post.user.userName);
+
+        double aspectRatio = post.image.imageWidth * 1.0 / post.image.imageHeight;
         holder.dvImage.setImageURI(imageUri);
+        holder.dvImage.setAspectRatio((float) aspectRatio);
         holder.tvCreatedTime.setText(createTime);
         holder.tvLikes.setText(Utils.formatNumberForDisplay(post.commentsCount) + " likes");
     }

@@ -51,8 +51,7 @@
             android:layout_height="370dp"
             fresco:actualImageScaleType="focusCrop"
             android:layout_alignParentTop="true"
-            fresco:placeholderImage="@drawable/gray_rectangle"
-            fresco:viewAspectRatio="1" />
+            fresco:placeholderImage="@drawable/gray_rectangle" />
 
         <TextView
             style="@style/BlueFont"
