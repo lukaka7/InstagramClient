@@ -19,4 +19,8 @@ Notes:
 Spent some time tweaking the UI look as close to the mock up.
 
 Walkthrough of all user stories:
-http://imgur.com/yp4UosV
+
+<img src='http://imgur.com/yp4UosV' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
