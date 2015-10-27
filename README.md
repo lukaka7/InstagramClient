@@ -20,7 +20,7 @@ Spent some time tweaking the UI look as close to the mock up.
 
 Walkthrough of all user stories:
 
-<img src='http://imgur.com/yp4UosV' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/yp4UosV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
