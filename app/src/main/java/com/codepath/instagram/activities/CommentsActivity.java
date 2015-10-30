@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.adapters.InstagramCommentsAdapter;
@@ -40,7 +39,6 @@ public class CommentsActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("COMMENTS");
 
         String mediaId = getIntent().getStringExtra("mediaId");
-        Log.i(TAG, mediaId);
 
         // Get RecyclerView Reference
         RecyclerView rvComments = (RecyclerView) findViewById(R.id.rvComments);

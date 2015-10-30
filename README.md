@@ -2,7 +2,25 @@
 
 ## Overview
 
-This is the starter project for the Instagram Client Project. 
+This is the 2nd revision of Instagram Client Project.
+
+Time spent: 7 hours spent in total
+
+Completed: 
+
+* [X] Connect the app with the Instagram API and get real time data using async-http-client library.
+* [X] Show the last 2 comments for each photo.
+* [X] User can view all comments for a post within a separate activity.
+* [X] User can share an image to their friends or email to themselves.
+* [X] Check if internet is available, and popup a toast.
+
+Walkthrough of all user stories:
+
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+[Assignment 1]This is the starter project for the Instagram Client Project. 
 
 Time spent: 5 hours spent in total
 

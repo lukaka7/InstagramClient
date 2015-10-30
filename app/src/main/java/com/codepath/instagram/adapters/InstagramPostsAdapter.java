@@ -19,9 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.activities.CommentsActivity;
@@ -211,7 +210,6 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_share:
-                        Toast.makeText(context, "Share!", Toast.LENGTH_SHORT).show();
                         getBitmapFromUri(Uri.parse(p.image.imageUrl));
                         String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Image Description", null);
                         Uri bmpUri = Uri.parse(path);
