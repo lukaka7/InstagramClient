@@ -16,6 +16,7 @@ Completed:
 
 Walkthrough of all user stories:
 
+<img src='http://i.imgur.com/0WSO1GV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
