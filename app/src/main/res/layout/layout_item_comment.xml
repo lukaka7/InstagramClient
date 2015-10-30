@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:id="@+id/dvBuddyIcon"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:layout_alignParentTop="true"
+        fresco:placeholderImage="@drawable/gray_oval"
+        fresco:roundAsCircle="true"/>
+
+    <RelativeLayout
+        android:id="@+id/rlComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/dvBuddyIcon"
+        android:layout_alignTop="@+id/dvBuddyIcon">
+
+        <TextView
+            style="@style/BlueFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/tvCommenterName" />
+
+        <TextView
+            style="@style/GrayFont.Light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvCommentTime"
+            android:layout_alignParentRight="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tvCommenterName"
+            android:id="@+id/tvComment" />
+
+        <View
+            android:id="@+id/ddComment"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvComment"
+            android:layout_marginTop="8dp"
+            android:background="@color/light_gray_separator_line"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>
