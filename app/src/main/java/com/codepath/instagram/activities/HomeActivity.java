@@ -4,34 +4,20 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.codepath.instagram.R;
-import com.codepath.instagram.adapters.InstagramPostsAdapter;
-import com.codepath.instagram.helpers.SimpleVerticalSpacerItemDecoration;
-import com.codepath.instagram.helpers.Utils;
-import com.codepath.instagram.models.InstagramPost;
+import com.codepath.instagram.adapters.HomeFragmentStatePagerAdapter;
 import com.codepath.instagram.networking.InstagramClient;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
-import cz.msebera.android.httpclient.Header;
+import static com.codepath.instagram.core.MainApplication.sharedApplication;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final String TAG = "HomeActivity";
-    private static final Integer VERTICAL_ITEM_SPACE = 24;
-
-    private ArrayList<InstagramPost> posts;
-    private InstagramPostsAdapter adapter;
+    private HomeFragmentStatePagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,51 +32,12 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
-        posts = new ArrayList<InstagramPost>();
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        pagerAdapter = new HomeFragmentStatePagerAdapter(getSupportFragmentManager(), this);
+        vpPager.setAdapter(pagerAdapter);
 
-        // Get RecyclerView Reference
-        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rvPosts);
-
-        // Create Adapter
-        adapter = new InstagramPostsAdapter(posts);
-
-        // Set Adapter
-        rvPosts.setAdapter(adapter);
-
-        // Set Layout
-        rvPosts.setLayoutManager(new LinearLayoutManager(this));
-        rvPosts.addItemDecoration(new SimpleVerticalSpacerItemDecoration(VERTICAL_ITEM_SPACE));
-
-        // get photos
-        InstagramClient.getPopularFeed(new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                posts.addAll(Utils.decodePostsFromJsonResponse(response));
-                adapter.notifyDataSetChanged();
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tlTabs);
+        tabLayout.setupWithViewPager(vpPager);
     }
 
     private Boolean isNetworkAvailable() {
@@ -98,5 +45,9 @@ public class HomeActivity extends AppCompatActivity {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting();
+    }
+
+    public static InstagramClient getRestClient() {
+        return (InstagramClient) InstagramClient.getInstance(InstagramClient.class, sharedApplication());
     }
 }

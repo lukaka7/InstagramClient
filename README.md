@@ -1,8 +1,28 @@
 # android-instagram
 
 ## Overview
+[Assignment 3] This is the 3rd revision of Instagram Client Project.
 
-This is the 2nd revision of Instagram Client Project.
+Time spent: 7 hours in total
+
+Compeleted:
+* [X] User can login to Instagram using OAuth login.
+* [X] User can view their own feed.
+* [X] User can search for a user by username.
+* [X] User can search for a tag.
+	** On the search screen, there will now be 2 tabs corresponding to "USERS" and "TAGS".
+	** When performing a search, the user can switch between the "USERS" tab and the "TAGS" tab and see search results for each one.
+
+Optional:
+
+Walkthrough of all user stories:
+
+<img src='http://i.imgur.com/n7Dm1t4.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+[Assignment 2] This is the 2nd revision of Instagram Client Project.
 
 Time spent: 7 hours spent in total
 

@@ -49,7 +49,6 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
 
     List<InstagramPost> posts;
     Context context;
-    String mediaId;
     Bitmap bitmap;
 
     public InstagramPostsAdapter(List<InstagramPost> posts) {
@@ -70,9 +69,8 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
     }
 
     @Override
-    public void onBindViewHolder(PostViewHolder holder, int position) {
+    public void onBindViewHolder(PostViewHolder holder, final int position) {
         final InstagramPost post = posts.get(position);
-        this.mediaId = post.mediaId;
         Uri avatarUri = Uri.parse(post.user.profilePictureUrl);
         Uri imageUri = Uri.parse(post.image.imageUrl);
 
@@ -96,6 +94,8 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
                 holder.llComments.addView(commentView);
             }
         } else if (comments.size() > 2) {
+            Log.i(TAG, "comment count = " + post.commentsCount);
+            Log.i(TAG, "user name = " + post.user.userName);
             int cmtCount = post.commentsCount;
             SpannableStringBuilder cmtCountSsb = getCommentCountSpannableStringBuilder(cmtCount);
             View cmtCountView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
@@ -105,6 +105,8 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
                 @Override
                 public void onClick(View view) {
                     // Start Comment Activity
+                    String mediaId = posts.get(position).mediaId;
+                    Log.i(TAG, "mediaID = " + mediaId);
                     Intent intent = new Intent(view.getContext(), CommentsActivity.class);
                     intent.putExtra("mediaId", mediaId);
                     view.getContext().startActivity(intent);
@@ -276,4 +278,6 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
             }
         }
     }
+
+
 }

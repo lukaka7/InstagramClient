@@ -15,13 +15,14 @@ import com.codepath.instagram.networking.InstagramClient;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
+import org.apache.http.Header;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.Header;
+//import cz.msebera.android.httpclient.Header;
 
-public class CommentsActivity extends AppCompatActivity {
+public class    CommentsActivity extends AppCompatActivity {
     private static final String TAG = "CommentsActivity";
     private static final Integer VERTICAL_ITEM_SPACE = 16;
 
@@ -55,7 +56,8 @@ public class CommentsActivity extends AppCompatActivity {
         rvComments.addItemDecoration(new SimpleVerticalSpacerItemDecoration(VERTICAL_ITEM_SPACE));
 
         // get photos
-        InstagramClient.getAllComments(mediaId, new JsonHttpResponseHandler() {
+        InstagramClient client = HomeActivity.getRestClient();
+        client.getAllComments(mediaId, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 comments.addAll(Utils.decodeCommentsFromJsonResponse(response));

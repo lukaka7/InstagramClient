@@ -1,41 +1,68 @@
 package com.codepath.instagram.networking;
 
-import com.loopj.android.http.AsyncHttpClient;
+import android.content.Context;
+import android.util.Log;
+
+import com.codepath.instagram.helpers.Constants;
+import com.codepath.oauth.OAuthBaseClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.scribe.builder.api.Api;
+
 /**
  * Created by lujiawang on 10/28/15.
  */
-public class InstagramClient {
-    private static final String clientId = "f114b56ba673446f9659510b9717f638";
-    private static final String clientSecret = "ae3afd5099014c598d2f7eb45d33186f";
-    private static final String baseUrl = "https://api.instagram.com/v1/";
+public class InstagramClient extends OAuthBaseClient {
+    private static final String REST_URL = "https://api.instagram.com/v1";
+    private static final Class<? extends Api> REST_API_CLASS = InstagramApi.class;
+    private static final String REST_CONSUMER_KEY = "7f5321002cc04089b778e463cd87953f";
+    private static final String REST_CONSUMER_SECRET = "a9980e6933814fd3848dba9f6b370b63";
+    private static final String REDIRECT_URI = Constants.REDIRECT_URI;
+    private static final String SCOPE = Constants.SCOPE;
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static final String SELF_FEED_URL = "https://api.instagram.com/v1/users/self/feed";
 
-    public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.get(getAbsoluteUrl(url), params, responseHandler);
+    private static final String my_own_clientId = "f114b56ba673446f9659510b9717f638";
+    private static final String my_own_clientSecret = "ae3afd5099014c598d2f7eb45d33186f";
+
+    public InstagramClient(Context context) {
+        super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REDIRECT_URI, SCOPE);
     }
 
-    public static void post(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        client.post(getAbsoluteUrl(url), params, responseHandler);
+    public void getPopularFeed(JsonHttpResponseHandler responseHandler) {
+//        String partUrl = "media/popular?client_id=" + REST_CONSUMER_KEY;
+//        String url = getApiUrl(partUrl);
+//        client.get(url, null, responseHandler);
+
+        client.get(SELF_FEED_URL, null, responseHandler);
     }
 
-    private static String getAbsoluteUrl(String relativeUrl) {
-        return baseUrl + relativeUrl;
+    public void getAllComments(String mediaId, JsonHttpResponseHandler responseHandler) {
+        String partUrl = "media/" + mediaId + "/comments?client_id=" + REST_CONSUMER_KEY;
+        String url = getApiUrl(partUrl);
+        client.get(url, null, responseHandler);
     }
 
-    // This method should use the AsyncHttpClient in the android-async-http library to send a JSON request to:
-    //    https://api.instagram.com/v1/media/popular?client_id={client_id}
-    public static void getPopularFeed(JsonHttpResponseHandler responseHandler) {
-        String url = "media/popular?client_id=" + clientId;
-        get(url, null, responseHandler);
+    public void getHomeTimeline(int page, AsyncHttpResponseHandler handler) {
+        String apiUrl = getApiUrl("statuses/home_timeline.json");
+        RequestParams params = new RequestParams();
+        params.put("page", String.valueOf(page));
+        client.get(apiUrl, params, handler);
     }
 
-    public static void getAllComments(String mediaId, JsonHttpResponseHandler responseHandler) {
-        String url = "media/" + mediaId + "/comments?client_id=" + clientId;
-        get(url, null, responseHandler);
+    public void getSelfFeeds(JsonHttpResponseHandler responseHandler) {
+        client.get(SELF_FEED_URL, null, responseHandler);
+    }
+
+    public void getSearchUsersResult(String searchTerm, JsonHttpResponseHandler responseHandler) {
+        Log.i("InstagramClient", "searchTerm = " + searchTerm);
+        client.get("https://api.instagram.com/v1/users/search?q=" + searchTerm, null, responseHandler);
+    }
+
+    public void getSearchTagsResult(String searchTerm, JsonHttpResponseHandler responseHandler) {
+        Log.i("InstagramClient", "searchTerm = " + searchTerm);
+        client.get("https://api.instagram.com/v1/tags/search?q=" + searchTerm, null, responseHandler);
     }
 }
