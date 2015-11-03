@@ -1,6 +1,23 @@
 # android-instagram
 
 ## Overview
+[Assignment 4] This is the 4th revision of Instagram Client Porject.
+
+Time spent: 5 hours in total
+
+Compeleted:
+* [X] Add pull-to-refresh for the home feed with SwipeRefreshLayout.
+* [X] User can open the Instagram client offline and see last loaded feed.
+* [X] Each media item is persisted into SQlite and can be displayed from the local DB.
+* [X] Create a background service to make the network request, load items into the DB and populate the view (for the user's home feed).
+
+Walkthrough of all user stories:
+
+<img src='http://i.imgur.com/ekOeRrk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
 [Assignment 3] This is the 3rd revision of Instagram Client Project.
 
 Time spent: 7 hours in total

@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.adapters.HomeFragmentStatePagerAdapter;
@@ -25,12 +24,6 @@ public class HomeActivity extends AppCompatActivity {
 
         Fresco.initialize(this);
         setContentView(R.layout.activity_home);
-
-        if (!isNetworkAvailable()) {
-            // Popup a dialog
-            Toast.makeText(this, "Network is not available! Please check your network setting!", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         pagerAdapter = new HomeFragmentStatePagerAdapter(getSupportFragmentManager(), this);

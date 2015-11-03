@@ -10,4 +10,8 @@
     <color name="search_tab_bar_background">#EEEEEE</color>
     <color name="placeholder_image">#BBBBBB</color>
     <color name="white">#FFFFFF</color>
+    <color name="blush_blue">#aaffff</color>
+    <color name="blush_green">#a2fdd1</color>
+    <color name="blush_orange">#fad8bb</color>
+    <color name="blush_red">#ffe2e4</color>
 </resources>

@@ -1,13 +1,14 @@
 package com.codepath.instagram.networking;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.codepath.instagram.helpers.Constants;
 import com.codepath.oauth.OAuthBaseClient;
+import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.SyncHttpClient;
 
 import org.scribe.builder.api.Api;
 
@@ -32,11 +33,12 @@ public class InstagramClient extends OAuthBaseClient {
     }
 
     public void getPopularFeed(JsonHttpResponseHandler responseHandler) {
-//        String partUrl = "media/popular?client_id=" + REST_CONSUMER_KEY;
-//        String url = getApiUrl(partUrl);
-//        client.get(url, null, responseHandler);
-
         client.get(SELF_FEED_URL, null, responseHandler);
+    }
+
+    public void getPopularFeedSync(JsonHttpResponseHandler responseHandler) {
+        AsyncHttpClient aClient = new SyncHttpClient();
+        aClient.get(SELF_FEED_URL, new RequestParams("access_token", client.getAccessToken().getToken()), responseHandler);
     }
 
     public void getAllComments(String mediaId, JsonHttpResponseHandler responseHandler) {
@@ -57,12 +59,10 @@ public class InstagramClient extends OAuthBaseClient {
     }
 
     public void getSearchUsersResult(String searchTerm, JsonHttpResponseHandler responseHandler) {
-        Log.i("InstagramClient", "searchTerm = " + searchTerm);
         client.get("https://api.instagram.com/v1/users/search?q=" + searchTerm, null, responseHandler);
     }
 
     public void getSearchTagsResult(String searchTerm, JsonHttpResponseHandler responseHandler) {
-        Log.i("InstagramClient", "searchTerm = " + searchTerm);
         client.get("https://api.instagram.com/v1/tags/search?q=" + searchTerm, null, responseHandler);
     }
 }

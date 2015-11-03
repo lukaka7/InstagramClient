@@ -41,6 +41,7 @@
             android:label="@string/title_activity_comments"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <service android:name=".services.InstagramService"></service>
     </application>
 
 </manifest>

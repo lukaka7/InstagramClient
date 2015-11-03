@@ -72,7 +72,10 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
     public void onBindViewHolder(PostViewHolder holder, final int position) {
         final InstagramPost post = posts.get(position);
         Uri avatarUri = Uri.parse(post.user.profilePictureUrl);
-        Uri imageUri = Uri.parse(post.image.imageUrl);
+        Uri imageUri = null;
+        if (post.image != null && post.image.imageUrl != null) {
+            imageUri = Uri.parse(post.image.imageUrl);
+        }
 
         String createTime = (String) DateUtils.getRelativeTimeSpanString(post.createdTime * 1000);
 
@@ -85,46 +88,43 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
         // set comments
         List<InstagramComment> comments = post.comments;
         holder.llComments.removeAllViews();
-        if (comments.size() > 0 && comments.size() <= 2) {
-            for (InstagramComment comment : comments) {
-                Log.i(TAG, "CreatedTime!!!!!!!!!!!!!!!!!! = " + comment.createdTime);
-                SpannableStringBuilder commentSsb = getCaptionSpannableStringBuilder(comment.user.userName, comment.text);
-                View commentView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
-                ((TextView) commentView).setText(commentSsb, TextView.BufferType.EDITABLE);
-                holder.llComments.addView(commentView);
-            }
-        } else if (comments.size() > 2) {
-            Log.i(TAG, "comment count = " + post.commentsCount);
-            Log.i(TAG, "user name = " + post.user.userName);
-            int cmtCount = post.commentsCount;
-            SpannableStringBuilder cmtCountSsb = getCommentCountSpannableStringBuilder(cmtCount);
-            View cmtCountView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
-            ((TextView) cmtCountView).setText(cmtCountSsb, TextView.BufferType.EDITABLE);
-            ((TextView) cmtCountView).setText("View all " + Integer.toString(cmtCount) + " comments");
-            ((TextView) cmtCountView).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Start Comment Activity
-                    String mediaId = posts.get(position).mediaId;
-                    Log.i(TAG, "mediaID = " + mediaId);
-                    Intent intent = new Intent(view.getContext(), CommentsActivity.class);
-                    intent.putExtra("mediaId", mediaId);
-                    view.getContext().startActivity(intent);
+        if (comments != null) {
+            if (comments.size() > 0 && comments.size() <= 2) {
+                for (InstagramComment comment : comments) {
+                    SpannableStringBuilder commentSsb = getCaptionSpannableStringBuilder(comment.user.userName, comment.text);
+                    View commentView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
+                    ((TextView) commentView).setText(commentSsb, TextView.BufferType.EDITABLE);
+                    holder.llComments.addView(commentView);
                 }
-            });
-            holder.llComments.addView(cmtCountView);
+            } else if (comments.size() > 2) {
+                int cmtCount = post.commentsCount;
+                SpannableStringBuilder cmtCountSsb = getCommentCountSpannableStringBuilder(cmtCount);
+                View cmtCountView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
+                ((TextView) cmtCountView).setText(cmtCountSsb, TextView.BufferType.EDITABLE);
+                ((TextView) cmtCountView).setText("View all " + Integer.toString(cmtCount) + " comments");
+                ((TextView) cmtCountView).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // Start Comment Activity
+                        String mediaId = posts.get(position).mediaId;
+                        Intent intent = new Intent(view.getContext(), CommentsActivity.class);
+                        intent.putExtra("mediaId", mediaId);
+                        view.getContext().startActivity(intent);
+                    }
+                });
+                holder.llComments.addView(cmtCountView);
 
-            int count = 2;
-            int idx = comments.size() - 1;
-            while (count > 0) {
-                InstagramComment comment = comments.get(idx);
-                Log.i(TAG, "Comment created time 0 " + comments.get(idx).createdTime);
-                SpannableStringBuilder commentSsb = getCaptionSpannableStringBuilder(comments.get(idx).user.userName, comments.get(idx).text);
-                View commentView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
-                ((TextView) commentView).setText(commentSsb, TextView.BufferType.EDITABLE);
-                holder.llComments.addView(commentView);
-                idx--;
-                count--;
+                int count = 2;
+                int idx = comments.size() - 1;
+                while (count > 0) {
+                    InstagramComment comment = comments.get(idx);
+                    SpannableStringBuilder commentSsb = getCaptionSpannableStringBuilder(comments.get(idx).user.userName, comments.get(idx).text);
+                    View commentView = LayoutInflater.from(this.context).inflate(R.layout.layout_item_text_coment, holder.llComments, false);
+                    ((TextView) commentView).setText(commentSsb, TextView.BufferType.EDITABLE);
+                    holder.llComments.addView(commentView);
+                    idx--;
+                    count--;
+                }
             }
         }
 
@@ -279,5 +279,13 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
         }
     }
 
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
+    }
 
+    public void addAll(List<InstagramPost> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
+    }
 }
