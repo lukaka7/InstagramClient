@@ -11,10 +11,21 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:theme="@style/ToolbarTheme"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/instagram_blue">
+            app:titleTextAppearance="@style/Toolbar.TitleText" >
+            <TextView
+                android:id="@+id/tvToolbarTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instagram"
+                android:textColor="@android:color/white"
+                android:textStyle="italic"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center"
+                />
         </android.support.v7.widget.Toolbar>
 
         <com.codepath.instagram.helpers.NonSwipeableViewPager

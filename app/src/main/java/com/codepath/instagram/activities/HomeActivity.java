@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.adapters.HomeFragmentStatePagerAdapter;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         // Make sure the toolbar exists in the activity and is not null
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView tvToolbarTitle = (TextView) findViewById(R.id.tvToolbarTitle);
 
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         pagerAdapter = new HomeFragmentStatePagerAdapter(getSupportFragmentManager(), this);

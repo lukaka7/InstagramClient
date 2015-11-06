@@ -1,7 +1,21 @@
 # android-instagram
 
 ## Overview
-[Assignment 4] This is the 4th revision of Instagram Client Porject.
+[Assignment 5] This is the 5th revision of Instagram Client Project.
+
+Completed:
+* [X] Add the Profile Page to your TabLayout to see your own posts, follower count, following count.
+* [X] Clicking on any user's profile image goes to that user's profile page.
+* [X] Replace the ActionBar with a ToolBar and style it to match the actual Instagram app.
+
+Walkthrough of all user stories:
+
+<img src='http://i.imgur.com/Ik81pJh.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+
+[Assignment 4] This is the 4th revision of Instagram Client Project.
 
 Time spent: 5 hours in total
 

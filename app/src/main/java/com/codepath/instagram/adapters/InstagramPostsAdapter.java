@@ -136,6 +136,7 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ProfileActivity.class);
                 intent.putExtra(ProfileActivity.EXTRA_USER_ID, post.user.userId);
+                intent.putExtra(ProfileActivity.EXTRA_USER_NAME, post.user.userName);
                 view.getContext().startActivity(intent);
             }
         });
