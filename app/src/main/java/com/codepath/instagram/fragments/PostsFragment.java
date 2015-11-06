@@ -96,6 +96,7 @@ public class PostsFragment extends Fragment {
         // Set Layout
         rvPosts.setLayoutManager(new LinearLayoutManager(view.getContext()));
         rvPosts.addItemDecoration(new SimpleVerticalSpacerItemDecoration(VERTICAL_ITEM_SPACE));
+        fetchPosts();
 
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InstagramUser implements Serializable {
+    private static final String TAG="InstagramUser";
     public String userName;
     public String fullName;
     public String profilePictureUrl;
@@ -26,6 +27,7 @@ public class InstagramUser implements Serializable {
             user.userName = jsonObject.getString("username");
             user.fullName = jsonObject.optString("full_name", "");
             user.profilePictureUrl = jsonObject.getString("profile_picture");
+
         } catch (JSONException e) {
             e.printStackTrace();
             return null;

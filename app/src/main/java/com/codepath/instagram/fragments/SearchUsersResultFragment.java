@@ -57,7 +57,13 @@ public class SearchUsersResultFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         // Get RecyclerView Reference
-        RecyclerView rvSearchUsers = (RecyclerView) view.findViewById(R.id.rvSearchUsers);
+        final RecyclerView rvSearchUsers = (RecyclerView) view.findViewById(R.id.rvSearchUsers);
+//        rvSearchUsers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                int position = rvSearchUsers.getChildPosition(view);
+//            }
+//        });
 
         // Set Adapter
         rvSearchUsers.setAdapter(adapter);

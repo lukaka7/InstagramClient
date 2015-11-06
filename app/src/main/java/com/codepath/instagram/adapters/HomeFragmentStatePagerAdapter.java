@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.fragments.PostsFragment;
+import com.codepath.instagram.fragments.ProfileFragment;
 import com.codepath.instagram.fragments.SearchFragment;
 import com.codepath.instagram.fragments.SearchTagsResultFragment;
 import com.codepath.instagram.helpers.SmartFragmentStatePagerAdapter;
@@ -48,34 +49,11 @@ public class HomeFragmentStatePagerAdapter extends SmartFragmentStatePagerAdapte
                 return new SearchTagsResultFragment();
             case 3:
             case 4:
-                return new PostsFragment();
+                ProfileFragment profileFragment = ProfileFragment.newInstance("");
+                return profileFragment;
             default:
                 return null;
         }
-//        Fragment fragment = null;
-//        Class fragmentClass;
-//
-//        Log.i(TAG, "getItem {}" + position);
-//
-//        switch (position) {
-//            case 0:
-//                fragmentClass = PostsFragment.class;
-//            case 1:
-//                fragmentClass = SearchUsersResultFragment.class;
-//            case 2:
-//            case 3:
-//            case 4:
-//            default:
-//                fragmentClass = PostsFragment.class;
-//        }
-//
-//        try {
-//            fragment = (Fragment) fragmentClass.newInstance();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        return fragment;
     }
 
     @Override

@@ -65,4 +65,41 @@ public class InstagramClient extends OAuthBaseClient {
     public void getSearchTagsResult(String searchTerm, JsonHttpResponseHandler responseHandler) {
         client.get("https://api.instagram.com/v1/tags/search?q=" + searchTerm, null, responseHandler);
     }
+
+    public void getUserPosts(String userId, JsonHttpResponseHandler responseHandler) {
+        String url = "https://api.instagram.com/v1/users/self/media/recent";
+        if (userId != "" && userId != null) {
+            url = "https://api.instagram.com/v1/users/" + userId + "/media/recent/";
+        }
+        client.get(url, null, responseHandler);
+    }
+
+    public void getTagPosts(String tagName, JsonHttpResponseHandler responseHandler) {
+        String url = "https://api.instagram.com/v1/tags/" + tagName + "/media/recent/";
+        client.get(url, null, responseHandler);
+    }
+
+    public void getUserFollows(String userId, JsonHttpResponseHandler responseHandler) {
+        String url = "https://api.instagram.com/v1/users/self/follows";
+        if (userId != "" && userId != null) {
+            url = "https://api.instagram.com/v1/users/" + userId + "/follows";
+        }
+        client.get(url, null, responseHandler);
+    }
+
+    public void getUserFollowedBy(String userId, JsonHttpResponseHandler responseHandler) {
+        String url = "https://api.instagram.com/v1/users/self/followed-by";
+        if (userId != "" && userId != null) {
+            url = "https://api.instagram.com/v1/users/" + userId + "/followed-by";
+        }
+        client.get(url, null, responseHandler);
+    }
+
+    public void getUser(String userId, JsonHttpResponseHandler responseHandler) {
+        String url = "https://api.instagram.com/v1/users/self";
+        if (userId != "" && userId != null) {
+            url = "https://api.instagram.com/v1/users/" + userId;
+        }
+        client.get(url, null, responseHandler);
+    }
 }

@@ -8,4 +8,9 @@
     <string name="default_caption">No caption!</string>
     <string name="title_activity_comments">CommentsActivity</string>
     <string name="login_title">Login</string>
+    <string name="tvPostsCountStr">Posts</string>
+    <string name="tvFollowersCountStr">Followers</string>
+    <string name="tvFollowingCountStr">Following</string>
+    <string name="title_activity_photo_grid">Photos</string>
+    <string name="title_activity_profile">Profile</string>
 </resources>

@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.codepath.instagram.R;
 import com.codepath.instagram.activities.CommentsActivity;
+import com.codepath.instagram.activities.ProfileActivity;
 import com.codepath.instagram.helpers.Utils;
 import com.codepath.instagram.models.InstagramComment;
 import com.codepath.instagram.models.InstagramPost;
@@ -130,6 +131,14 @@ public class InstagramPostsAdapter extends RecyclerView.Adapter<InstagramPostsAd
 
         holder.dvAvatar.setImageURI(avatarUri);
         holder.tvUserName.setText(post.user.userName);
+        holder.dvAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+                intent.putExtra(ProfileActivity.EXTRA_USER_ID, post.user.userId);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         double aspectRatio = post.image.imageWidth * 1.0 / post.image.imageHeight;
         holder.dvImage.setImageURI(imageUri);

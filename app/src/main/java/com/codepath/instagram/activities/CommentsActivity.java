@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 //import cz.msebera.android.httpclient.Header;
 
-public class    CommentsActivity extends AppCompatActivity {
+public class CommentsActivity extends AppCompatActivity {
     private static final String TAG = "CommentsActivity";
     private static final Integer VERTICAL_ITEM_SPACE = 16;
 
@@ -38,6 +38,7 @@ public class    CommentsActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("COMMENTS");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         String mediaId = getIntent().getStringExtra("mediaId");
 
@@ -64,7 +65,5 @@ public class    CommentsActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
     }
-
 }
